@@ -1,9 +1,16 @@
 package com.smart.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Product {
@@ -15,6 +22,16 @@ public class Product {
 	private String productDescription;
 	private Double productDiscountedPrice;
 	private Double productActualPrice;
+	
+	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinTable(name="product_images",
+	joinColumns= { @JoinColumn(name="product_id")},
+	inverseJoinColumns=
+{
+		@JoinColumn(name="image_id")
+})
+	private Set<Image>Images;
+	
 	public Integer getProductId() {
 		return productId;
 	}
@@ -63,6 +80,12 @@ public class Product {
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	public Set<Image> getImages() {
+		return Images;
+	}
+	public void setImages(Set<Image> images) {
+		Images = images;
 	} 
 	
 	

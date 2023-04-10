@@ -9,6 +9,6 @@ public class EcommerceApplicationLearningYourselfApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EcommerceApplicationLearningYourselfApplication.class, args);
 	
-	}      
+	}       
 
 }
